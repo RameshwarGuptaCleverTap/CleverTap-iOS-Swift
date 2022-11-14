@@ -1,0 +1,20 @@
+PODS:
+  - CTNotificationContent (0.2.3)
+  - CTNotificationService (0.1.5)
+
+DEPENDENCIES:
+  - CTNotificationContent
+  - CTNotificationService
+
+SPEC REPOS:
+  trunk:
+    - CTNotificationContent
+    - CTNotificationService
+
+SPEC CHECKSUMS:
+  CTNotificationContent: 3cfe40f2ee7dfb30b99136de5d387adeb17d6fee
+  CTNotificationService: 844eb0cf5a6260b76e05420dde49312b72c5ad7c
+
+PODFILE CHECKSUM: c4148f672847c08ab5b829685140d39c1c660638
+
+COCOAPODS: 1.11.3

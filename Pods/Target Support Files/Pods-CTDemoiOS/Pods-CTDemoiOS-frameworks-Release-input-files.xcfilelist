@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-CTDemoiOS/Pods-CTDemoiOS-frameworks.sh
+${BUILT_PRODUCTS_DIR}/CTNotificationContent/CTNotificationContent.framework
+${BUILT_PRODUCTS_DIR}/CTNotificationService/CTNotificationService.framework
