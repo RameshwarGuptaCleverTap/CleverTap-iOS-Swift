@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CleverTapAccountID</key>
+	<string>TEST-79W-46Z-666Z</string>
+	<key>CleverTapRegion</key>
+	<string>eu1</string>
+	<key>CleverTapToken</key>
+	<string>TEST-164-0ca</string>
+	<key>CleverTapDisableIDFV</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,17 +29,9 @@
 			</array>
 		</dict>
 	</dict>
-	<key>CleverTapToken</key>
-	<string>TEST-164-0ca</string>
-	<key>CleverTapAccountID</key>
-	<string>TEST-79W-46Z-666Z</string>
-	<key>CleverTapRegion</key>
-	<string>eu1</string>
-	<key>CleverTapDisableIDFV</key>
-	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;We need your location to serve you better&quot;</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;We need your location to serve you better&quot;</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

@@ -12,58 +12,58 @@ import CleverTapSDK
 class ViewController: UIViewController, CleverTapInAppNotificationDelegate, CleverTapInboxViewControllerDelegate, CleverTapDisplayUnitDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        CleverTap.sharedInstance()?.enableDeviceNetworkInfoReporting(true)
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            CleverTap.sharedInstance()?.enableDeviceNetworkInfoReporting(true)
+            
+            locationManager.delegate = self
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+                
+                    locationManager.startUpdatingLocation()
+            
+            inAppNAppInbox()
+            
+           // CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
         
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        
-        //  inAppNAppInbox()
-        
-        // CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
-        
-    }
+        }
     
     func inAppNAppInbox() {
         
         CleverTap.sharedInstance()?.initializeInbox(callback: ({ (success) in
-            let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
-            let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
-            print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
-        }))
+                let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
+                let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
+                print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+         }))
         
         // config the style of App Inbox Controller
-        let style = CleverTapInboxStyleConfig.init()
-        style.title = "App Inbox"
-        style.backgroundColor = UIColor.blue
-        style.messageTags = ["tag1", "tag2"]
-        style.navigationBarTintColor = UIColor.blue
-        style.navigationTintColor = UIColor.blue
-        style.tabUnSelectedTextColor = UIColor.blue
-        style.tabSelectedTextColor = UIColor.blue
-        style.tabSelectedBgColor = UIColor.blue
-        style.firstTabTitle = "My First Tab"
-        
-        if let inboxController = CleverTap.sharedInstance()?.newInboxViewController(with: style, andDelegate: self) {
-            let navigationController = UINavigationController.init(rootViewController: inboxController)
-            self.present(navigationController, animated: true, completion: nil)
-        }
+            let style = CleverTapInboxStyleConfig.init()
+            style.title = "App Inbox"
+            style.backgroundColor = UIColor.blue
+            style.messageTags = ["tag1", "tag2"]
+            style.navigationBarTintColor = UIColor.blue
+            style.navigationTintColor = UIColor.blue
+            style.tabUnSelectedTextColor = UIColor.blue
+            style.tabSelectedTextColor = UIColor.blue
+            style.tabSelectedBgColor = UIColor.blue
+            style.firstTabTitle = "My First Tab"
+            
+            if let inboxController = CleverTap.sharedInstance()?.newInboxViewController(with: style, andDelegate: self) {
+                let navigationController = UINavigationController.init(rootViewController: inboxController)
+                self.present(navigationController, animated: true, completion: nil)
+          }
     }
     
     
     
     @IBAction func updateProfile(_sender : UIButton) {
         let updateProfile: Dictionary<String, Any> = ["Plan type": "Gold",
-                                                      "Gender": "M"
-        ]
+                                                "Gender": "M"
+                                             ]
         CleverTap.sharedInstance()?.profilePush(updateProfile)
-        
+
     }
     
     
@@ -76,19 +76,19 @@ class ViewController: UIViewController, CleverTapInAppNotificationDelegate, Clev
                                             day: 25)
         let date = calendar.date(from: dateComponents)!
         
-        let profile: Dictionary<String, Any> = ["Name": "Abbie Cornish"
-                                                ,"Email": "rudra.shiv1233a@gmail.com",
+        let profile: Dictionary<String, Any> = ["Name": "Rameshwar Gupta"
+                                                ,"Email": "rameshwargupta2208@gmail.com",
                                                 "Plan type": "Normal",
-                                                "Phone": "+919675723575",
+                                                "Phone": "+918889999999",
                                                 "Photo": "https://media.istockphoto.com/id/1136413215/photo/young-man-at-street-market.jpg?s=612x612&w=is&k=20&c=N_Qgu0qUfjcmIQa0xuReT2W_fY7teWtMLrKU-IEe0ok=",
                                                 "DOB": date,
                                                 "MSG-email": true as AnyObject,
                                                 "MSG-whatsapp": true as AnyObject,
                                                 "MSG-push": true as AnyObject,
-                                                "MSG-sms": false as AnyObject,
+                                                "MSG-sms": true as AnyObject,
                                                 "MSG-dndPhone": false as AnyObject,
                                                 "MSG-dndEmail": false as AnyObject,
-                                                "Identity": "PK110"]
+                                                "Identity": "rameshwargupta"]
         
         CleverTap.sharedInstance()?.onUserLogin(profile)
         
@@ -98,6 +98,7 @@ class ViewController: UIViewController, CleverTapInAppNotificationDelegate, Clev
     //
     
     @IBAction func updateLocationWithUserConsent() {
+        
         
         CleverTap.getLocationWithSuccess({(location: CLLocationCoordinate2D) -> Void in
             // do something with location here, optionally set on CleverTap for use in segmentation etc
@@ -111,44 +112,44 @@ class ViewController: UIViewController, CleverTapInAppNotificationDelegate, Clev
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation] ) {
-        if let location = locations.last {
-            //                let latitude = location.coordinate.latitude
-            //                let longitude = location.coordinate.longitude
-            // Handle location update
-            CleverTap.setLocation(location.coordinate)
+      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation] ) {
+            if let location = locations.last {
+//                let latitude = location.coordinate.latitude
+//                let longitude = location.coordinate.longitude
+                // Handle location update
+                CleverTap.setLocation(location.coordinate)
+            }
+            
         }
         
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Handle failure to get a user’s location
-    }
+        
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            // Handle failure to get a user’s location
+        }
     
     //
     
     @IBAction func productViewedEvent(_sender : UIButton) {
-        
+
         let props = [
             "Product name": "Casio Chronograph Watch",
             "Category": "Mens Accessories",
             "Price": 59.99,
             "Date": NSDate()
         ] as [String : Any]
-        
+
         CleverTap.sharedInstance()?.recordEvent("Product viewed", withProps: props)
-        
+
         
     }
     
     func inAppNotificationButtonTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
-        print("In-App Button Tapped with custom extras:", customExtras ?? "");
-    }
+          print("In-App Button Tapped with custom extras:", customExtras ?? "");
+      }
     
     func messageButtonTapped(withCustomExtras customExtras: [AnyHashable : Any]?) {
-        print("App Inbox Button Tapped with custom extras: ", customExtras ?? "");
-    }
-    
+            print("App Inbox Button Tapped with custom extras: ", customExtras ?? "");
+        }
+
 }
 

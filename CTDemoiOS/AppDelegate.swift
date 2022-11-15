@@ -7,6 +7,7 @@
 
 import UIKit
 import CleverTapSDK
+import UserNotifications
 
 
 @main
@@ -16,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        CleverTap.autoIntegrate()
         registerForPush()
+        CleverTap.autoIntegrate()
         CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue)
         
         let action1 = UNNotificationAction(identifier: "action_1", title: "Back", options: [])
@@ -81,9 +82,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
-        CleverTap.sharedInstance()?.recordNotificationViewedEvent(withData: notification.request.content.userInfo)
-        //CleverTap.sharedInstance()?.handleNotification(withData: notification.request.content.userInfo, openDeepLinksInForeground: true)
-        completionHandler([.badge, .sound, .banner])
+     //   CleverTap.sharedInstance()?.recordNotificationViewedEvent(withData: notification.request.content.userInfo)
+//        CleverTap.sharedInstance()?.handleNotification(withData: notification.request.content.userInfo, openDeepLinksInForeground: true)
+        completionHandler([.badge, .sound, .alert])
     }
     
     func application(_ application: UIApplication,
@@ -93,9 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UIBackgroundFetchResult.noData)
     }
     
-    func pushNotificationTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
-        NSLog("pushNotificationTapped: customExtras: ", customExtras)
-    }
+//    func pushNotificationTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
+//        NSLog("pushNotificationTapped: customExtras: ", customExtras)
+//    }
 }
 
 

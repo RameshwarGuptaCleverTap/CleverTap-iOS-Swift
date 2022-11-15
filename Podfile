@@ -6,23 +6,25 @@ target 'CTDemoiOS' do
   use_frameworks!
 
   # Pods for CTDemoiOS
+  pod "CleverTap-iOS-SDK"
 
-end
+#target 'NotificationContentDemo' do
+#  # Comment the next line if you don't want to use dynamic frameworks
+#  use_frameworks!
+#
+#  # Pods for NotificationContentDemo
+#  pod 'CTNotificationContent'
+#  pod "CleverTap-iOS-SDK"
+#
+#
+#end
 
-target 'NotificationContentDemo' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for NotificationContentDemo
-  pod 'CTNotificationContent'
-
-end
-
-target 'NotificationServiceDemo' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for NotificationServiceDemo
+  target 'NotificationService' do
+  # Pods for NotificationService
   pod 'CTNotificationService'
+  pod "CleverTap-iOS-SDK"
+  
+  end
+
 
 end
